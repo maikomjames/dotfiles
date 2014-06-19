@@ -68,11 +68,19 @@
 (define-key pedro-mode-map (kbd "C-c SPC") 'ace-jump-mode)
 
 ;; CUSTOM FUNCTIONS
-(define-key pedro-mode-map (kbd "M-l") 'select-current-line)
-(define-key pedro-mode-map (kbd "M-RET") 'line-above)
+(define-key pedro-mode-map (kbd "C-l") 'select-current-line)
+(define-key pedro-mode-map (kbd "<C-return>") 'line-above)
+(define-key pedro-mode-map (kbd "M-RET") 'line-below)
 (define-key pedro-mode-map (kbd "C-M-y") 'duplicate-current-line-or-region)
 (define-key pedro-mode-map (kbd "C-c r") 'rename-this-buffer-and-file)
 
+;; ==================================================
+;;             GLOBAL MAPPINGS
+;; ==================================================
+
+;; CUSTOM FUNCTIONS
+(global-set-key [remap kill-region] 'cut-line-or-region)
+(global-set-key [remap kill-ring-save] 'copy-line-or-region)
 
 ;; ==================================================
 ;;              PLUGINS and PACKAGES
@@ -84,6 +92,14 @@
 (flx-ido-mode 1)
 (setq ido-use-faces nil)
 
+;; SAVEPLACE
+(require 'saveplace)
+(setq save-place-file (concat user-emacs-directory "saveplace.el"))
+(setq-default save-place t)
+
+;; AUTO-COMPLETE
+(require 'auto-complete-config)
+(ac-config-default)
 
 ;; ==================================================
 ;;              CUSTOM FUNCTIONS
@@ -102,6 +118,29 @@
   (newline-and-indent)
   (forward-line -1)
   (indent-according-to-mode))
+
+(defun line-below()
+  "Inserts line below current one"
+  (interactive)
+  (move-beginning-of-line nil)
+  (forward-line)
+  (newline-and-indent)
+  (forward-line -1)
+  (indent-according-to-mode))
+
+(defun cut-line-or-region()
+  "Kill current line if no region is active, otherwise kills region."
+  (interactive)
+  (if (region-active-p)
+      (kill-region (region-beginning) (region-end))
+    (kill-region (line-beginning-position) (line-beginning-position 2))))
+
+(defun copy-line-or-region()
+  "Copy current line if no region is active, otherwise copies region."
+  (interactive)
+  (if (region-active-p)
+      (kill-ring-save (region-beginning) (region-end))
+    (kill-ring-save (line-beginning-position) (line-beginning-position 2))))
 
 (defun duplicate-current-line-or-region (arg)
   "Duplicates the current line or region ARG times.
