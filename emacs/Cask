@@ -3,5 +3,6 @@
 (depends-on "cask")
 (depends-on "expand-region")
 (depends-on "ace-jump-mode")
+(depends-on "browse-kill-ring")
 (depends-on "flx-ido")
 
