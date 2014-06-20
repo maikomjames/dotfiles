@@ -1,5 +1,33 @@
-# Emacs
+# OSX       taken from: https://github.com/github/gitignore/blob/master/Global/OSX.gitignore
+# ----------------------------------------------------------------------------------------------
+.DS_Store
+# Thumbnails
+._*
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
 
+# Folder config file
+Desktop.ini
+
+# Tags      taken from: https://github.com/github/gitignore/blob/master/Global/Tags.gitignore
+# ----------------------------------------------------------------------------------------------
+# Ignore tags created by etags and ctags
+TAGS
+tags
+
+# Vim       taken from: https://github.com/github/gitignore/blob/master/Global/vim.gitignore
+# ----------------------------------------------------------------------------------------------
+.*.Sw[a-z]
+*.un~
+Session.vim
+
+# SASS
+# ----------------------------------------------------------------------------------------------
+.sass-cache
+
+# Emacs    taken form: https://github.com/github/gitignore/blob/master/Global/Emacs.gitignore
+# ----------------------------------------------------------------------------------------------
 emacs/bookmarks
 emacs/ac-comphist.dat
 emacs/saveplace.el
