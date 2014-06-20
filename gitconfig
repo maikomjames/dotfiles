@@ -1,35 +1,50 @@
 [user]
-	name = Pedro Siqueira
-	email = pedrowss@gmail.com
+  name = Pedro Siqueira
+  email = pedrowss@gmail.com
+
 [color]
-	diff = auto
-	status = auto
-	branch = auto
-	interactive = auto
-	ui = auto
+  diff = auto
+  status = auto
+  branch = auto
+  interactive = auto
+  ui = auto
+
 [gc]
-	auto = 1 	# cleanup unnecessary files and optimize the local repository
+  auto = 1  # cleanup unnecessary files and optimize the local repository
+
 [alias]
-	st = status
-	cm = commit -m
-	co = checkout
-	di = diff
-	dc = diff --cached
-	ds = diff --staged
-	aa = add --all
-	pom = push origin master
-	b = branch
-	unstage = reset HEAD            # un-add files from index (tracking)
-	uncommit = reset --soft HEAD^   # go back one commit, put changes into your working dir and index
+  st = status -sb
+  cm = commit -m
+  co = checkout
+  lg = log --oneline --decorate
+  rt = remote -v
+  di = diff
+  df = diff --word-diff
+  dc = diff --cached
+  ds = diff --staged
+  aa = add --all
+  pom = push origin master
+  b = branch
+  br = branch -a
+  unstage = reset HEAD            # un-add files from index (tracking)
+  uncommit = reset --soft HEAD^   # go back one commit, put changes into your working dir and index
 
 [format]
-	pretty=format:%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset 	# format git log 
+  pretty=format:%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset   # format git log
 
 [merge]
-	tool = vimdiff
-	summary = true
+  tool = vimdiff
+  summary = true
+
 [core]
-	editor = vim
-	excludesfile = /Users/pedro/.gitignore_global
+  editor = vim
+  excludesfile = /Users/pedro/.gitignore_global
+
 [push]
-	default = simple 	# default in git 2.0
+  default = simple                # default in git 2.0
+
+[branch "master"]
+  rebase = false                  # rebase will be set to false for branch
+
+[Color "diff"]
+  whitespace = red reverse
