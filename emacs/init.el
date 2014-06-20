@@ -68,7 +68,7 @@
 (define-key pedro-mode-map (kbd "C-c SPC") 'ace-jump-mode)
 
 ;; CUSTOM FUNCTIONS
-(define-key pedro-mode-map (kbd "C-l") 'select-current-line)
+(define-key pedro-mode-map (kbd "C-M-h") 'select-current-line)
 (define-key pedro-mode-map (kbd "<C-return>") 'line-above)
 (define-key pedro-mode-map (kbd "M-RET") 'line-below)
 (define-key pedro-mode-map (kbd "C-M-y") 'duplicate-current-line-or-region)
@@ -100,6 +100,18 @@
 ;; AUTO-COMPLETE
 (require 'auto-complete-config)
 (ac-config-default)
+
+;; PROJECTILE
+(projectile-global-mode)
+
+;; PROJECTILE and HELM
+(global-set-key (kbd "C-c h") 'helm-projectile)
+
+;; WINDMOVE
+(define-key pedro-mode-map (kbd "C-M-j")  'windmove-left)
+(define-key pedro-mode-map (kbd "C-M-l") 'windmove-right)
+(define-key pedro-mode-map (kbd "C-M-i")    'windmove-up)
+(define-key pedro-mode-map (kbd "C-M-k")  'windmove-down)
 
 ;; ==================================================
 ;;              CUSTOM FUNCTIONS
