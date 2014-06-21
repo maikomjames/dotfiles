@@ -14,18 +14,16 @@
 
 [alias]
   st = status -sb
+  aa = add --all
   cm = commit -m
   co = checkout
-  lg = log --oneline --decorate
   rt = remote -v
-  di = diff
+  br = branch -a
+  lg = log --oneline --decorate
   df = diff --word-diff
   dc = diff --cached
   ds = diff --staged
-  aa = add --all
   pom = push origin master
-  b = branch
-  br = branch -a
   unstage = reset HEAD            # un-add files from index (tracking)
   uncommit = reset --soft HEAD^   # go back one commit, put changes into your working dir and index
 
@@ -38,7 +36,7 @@
 
 [core]
   editor = vim
-  excludesfile = /Users/pedro/.gitignore_global
+  excludesfile = ~/.gitignore_global
 
 [push]
   default = simple                # default in git 2.0
