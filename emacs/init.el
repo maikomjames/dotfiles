@@ -66,6 +66,8 @@
 
 ;; ACE JUMP MODE
 (define-key pedro-mode-map (kbd "C-c SPC") 'ace-jump-mode)
+(define-key pedro-mode-map (kbd "C-c C-c SPC") 'ace-jump-char-mode)
+(define-key pedro-mode-map (kbd "C-u C-u SPC") 'ace-jump-line-mode)
 
 ;; CUSTOM FUNCTIONS
 (define-key pedro-mode-map (kbd "C-M-h") 'select-current-line)
