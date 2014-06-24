@@ -12,8 +12,8 @@
 (setq ring-bell-function 'ignore)
 (setq default-directory "~/")
 
-(global-linum-mode t)
-(global-hl-line-mode 1)
+(global-linum-mode -1)
+(global-hl-line-mode -1)
 (global-visual-line-mode t)
 (delete-selection-mode t)
 (blink-cursor-mode t)
@@ -87,6 +87,15 @@
 ;; ==================================================
 ;;              PLUGINS and PACKAGES
 ;; ==================================================
+
+;; DIRED SETTINGS
+(require 'dired)
+(setq dired-recursive-deletes (quote top))
+(define-key dired-mode-map (kbd "f") 'dired-find-alternate-file)
+(define-key dired-mode-map (kbd "^") (lambda ()
+                                       (interactive)
+                                       (find-alternate-file "..")))
+(put 'dired-find-alternate-file 'disabled nil)
 
 ;; IDO MODE
 (ido-mode 1)
@@ -194,6 +203,8 @@ there's a region, all lines that region covers will be duplicated."
                (set-visited-file-name new-name)
                (set-buffer-modified-p nil)
                (message "File '%s' successfully renamed to '%s'" name (file-name-nondirectory new-name))))))))
+
+;; ==================================================
 
 ;; Define my own minor mode and activate it
 (define-minor-mode pedro-mode

@@ -9,3 +9,4 @@
 (depends-on "web-mode")
 (depends-on "projectile")
 (depends-on "helm-projectile")
+(depends-on "php-mode")

@@ -34,3 +34,4 @@ emacs/saveplace.el
 emacs/projectile-bookmarks.eld
 emacs/auto-save-list/*
 emacs/.cask/
+*~
