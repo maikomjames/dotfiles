@@ -6,12 +6,6 @@
 ;;                 Basic Settings
 ;; ==================================================
 
-;; Change C-x with C-j and C-c with C-i on Colemak layout
-(keyboard-translate ?\C-j ?\C-x)
-(keyboard-translate ?\C-x ?\C-j)
-(keyboard-translate ?\C-i ?\C-c)
-(keyboard-translate ?\C-c ?\C-i)
-
 (set-frame-font "Source Code Pro for Powerline-14")
 (setq mac-command-modifier 'meta)
 (setq mac-option-modifier nil)
@@ -64,16 +58,16 @@
 (defvar pedro-mode-map (make-keymap) "my keys")
 
 ;; Cursor keys on home row
-(define-key pedro-mode-map (kbd "M-e") 'next-line)
-(define-key pedro-mode-map (kbd "M-u") 'previous-line)
-(define-key pedro-mode-map (kbd "M-n") 'backward-char)
-(define-key pedro-mode-map (kbd "M-i") 'forward-char)
+(define-key pedro-mode-map (kbd "M-k") 'next-line)
+(define-key pedro-mode-map (kbd "M-i") 'previous-line)
+(define-key pedro-mode-map (kbd "M-j") 'backward-char)
+(define-key pedro-mode-map (kbd "M-l") 'forward-char)
 
 ;; WINDMOVE
-(define-key pedro-mode-map (kbd "C-M-n")  'windmove-left)
-(define-key pedro-mode-map (kbd "C-M-i") 'windmove-right)
-(define-key pedro-mode-map (kbd "C-M-u")    'windmove-up)
-(define-key pedro-mode-map (kbd "C-M-e")  'windmove-down)
+(define-key pedro-mode-map (kbd "C-M-j")  'windmove-left)
+(define-key pedro-mode-map (kbd "C-M-l") 'windmove-right)
+(define-key pedro-mode-map (kbd "C-M-i")    'windmove-up)
+(define-key pedro-mode-map (kbd "C-M-k")  'windmove-down)
 
 ;; EXPAND REGION
 (define-key pedro-mode-map (kbd "C-o") 'er/expand-region)
@@ -84,7 +78,7 @@
 (define-key pedro-mode-map (kbd "C-u C-u SPC") 'ace-jump-line-mode)
 
 ;; CUSTOM FUNCTIONS
-(define-key pedro-mode-map (kbd "M-l") 'select-current-line)
+(define-key pedro-mode-map (kbd "M-C h") 'select-current-line)
 (define-key pedro-mode-map (kbd "<C-return>") 'line-above)
 (define-key pedro-mode-map (kbd "M-RET") 'line-below)
 (define-key pedro-mode-map (kbd "C-S-y") 'duplicate-current-line-or-region)
