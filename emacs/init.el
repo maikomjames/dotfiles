@@ -41,6 +41,10 @@
 (add-to-list 'auto-mode-alist '("\\.gemspec\\'" . ruby-mode))
 (add-to-list 'auto-mode-alist '("config.ru\\'" . ruby-mode))
 
+;; Emmet
+(add-hook 'html-mode-hook 'emmet-mode)
+(add-hook 'web-mode-hook 'emmet-mode)
+
 ;; Web-mode
 (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
@@ -60,6 +64,12 @@
 (define-key pedro-mode-map (kbd "M-i") 'previous-line)
 (define-key pedro-mode-map (kbd "M-j") 'backward-char)
 (define-key pedro-mode-map (kbd "M-l") 'forward-char)
+
+;; WINDMOVE
+(define-key pedro-mode-map (kbd "C-M-j")  'windmove-left)
+(define-key pedro-mode-map (kbd "C-M-l") 'windmove-right)
+(define-key pedro-mode-map (kbd "C-M-i")    'windmove-up)
+(define-key pedro-mode-map (kbd "C-M-k")  'windmove-down)
 
 ;; EXPAND REGION
 (define-key pedro-mode-map (kbd "C-o") 'er/expand-region)
@@ -112,17 +122,20 @@
 (require 'auto-complete-config)
 (ac-config-default)
 
+;; YASNIPPET
+(yas-global-mode t)
+
+;; JS MODE
+(setq js-indent-level 2)
+
 ;; PROJECTILE
 (projectile-global-mode)
 
 ;; PROJECTILE and HELM
 (global-set-key (kbd "C-c h") 'helm-projectile)
 
-;; WINDMOVE
-(define-key pedro-mode-map (kbd "C-M-j")  'windmove-left)
-(define-key pedro-mode-map (kbd "C-M-l") 'windmove-right)
-(define-key pedro-mode-map (kbd "C-M-i")    'windmove-up)
-(define-key pedro-mode-map (kbd "C-M-k")  'windmove-down)
+;; MAGIT status
+(define-key pedro-mode-map (kbd "C-c C-t")  'magit-status)
 
 ;; ==================================================
 ;;              CUSTOM FUNCTIONS
@@ -211,3 +224,32 @@ there's a region, all lines that region covers will be duplicated."
   "A minor mode for my custom keys and functions"
   t " pedro" 'pedro-mode-map)
 (pedro-mode t)
+
+;; ==================================================
+;;               APPEARENCE
+;; ==================================================
+(load-theme 'flatland t)
+
+(powerline-default-theme)
+(setq powerline-color1 "gray30")
+(setq powerline-color2 "gray45")
+(set-face-attribute 'mode-line nil
+                    :background "gray22"
+                    :foreground "F0DFAF"
+                    :box nil)
+
+;; ==================================================
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-enabled-themes (quote (sanityinc-tomorrow-eighties)))
+ '(custom-safe-themes (quote ("86f4407f65d848ccdbbbf7384de75ba320d26ccecd719d50239f2c36bec18628" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" default))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

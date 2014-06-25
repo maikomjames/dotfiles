@@ -1,12 +1,24 @@
 (source melpa)
 
 (depends-on "cask")
+(depends-on "color-theme-sanityinc-tomorrow")
+(depends-on "powerline")
+(depends-on "flatland-theme")
+
 (depends-on "expand-region")
 (depends-on "ace-jump-mode")
 (depends-on "browse-kill-ring")
+
 (depends-on "flx-ido")
-(depends-on "auto-complete")
-(depends-on "web-mode")
 (depends-on "projectile")
 (depends-on "helm-projectile")
+
+(depends-on "auto-complete")
+(depends-on "yasnippet")
+
+(depends-on "web-mode")
+(depends-on "emmet-mode")
 (depends-on "php-mode")
+
+(depends-on "magit")
+(depends-on "org-pomodoro")
