@@ -19,6 +19,7 @@
 (blink-cursor-mode t)
 (show-paren-mode t)
 
+(setq backup-directory-alist `(("." . "~/.saves")))
 (setq make-backup-file nil)
 (setq auto-save-default nil)
 (setq inhibit-startup-message t)
@@ -78,7 +79,7 @@
 (define-key pedro-mode-map (kbd "C-u C-u SPC") 'ace-jump-line-mode)
 
 ;; CUSTOM FUNCTIONS
-(define-key pedro-mode-map (kbd "M-C h") 'select-current-line)
+(define-key pedro-mode-map (kbd "C-;") 'select-current-line)
 (define-key pedro-mode-map (kbd "<C-return>") 'line-above)
 (define-key pedro-mode-map (kbd "M-RET") 'line-below)
 (define-key pedro-mode-map (kbd "C-S-y") 'duplicate-current-line-or-region)
@@ -222,6 +223,29 @@ there's a region, all lines that region covers will be duplicated."
   "A minor mode for my custom keys and functions"
   t " pedro" 'pedro-mode-map)
 (pedro-mode t)
+
+;; ==================================================
+;;                  ORG MODE
+;; ==================================================
+
+(add-hook 'org-mode-hook
+          (lambda()
+            (set (make-local-variable 'electric-indent-functions)
+                 (list (lambda(arg) 'no-indent)))))
+(setq org-src-fontify-natively t)
+(define-key global-map "\C-cc" 'org-capture)
+(global-set-key "\C-ca" 'org-agenda)
+(setq org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "DOING(i)" "|" "DONE(d)" "ARCHIVED")))
+(setq org-todo-keyword-faces
+      '(("TODO" . org-warning)
+        ("DOING" . "yellow")
+        ("NEXT" . "orange")
+        ("DONE" . "green")
+        ("ARCHIVED" . "blue")))
+(setq org-agenda-custom-commands
+      '(("d" todo "DOING")))
+(setq org-log-done 'time)
+(setq org-startup-folded 'showeverything)
 
 ;; ==================================================
 ;;               APPEARENCE
