@@ -1,13 +1,14 @@
 (source melpa)
 
 (depends-on "cask")
-(depends-on "color-theme-sanityinc-tomorrow")
+(depends-on "color-theme-solarized")
 (depends-on "powerline")
-(depends-on "flatland-theme")
+(depends-on "git-gutter")
 
 (depends-on "expand-region")
 (depends-on "ace-jump-mode")
 
+(depends-on "ido-vertical-mode")
 (depends-on "flx-ido")
 (depends-on "projectile")
 (depends-on "helm-projectile")

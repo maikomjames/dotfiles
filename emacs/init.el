@@ -111,6 +111,7 @@
 (ido-everywhere 1)
 (flx-ido-mode 1)
 (setq ido-use-faces nil)
+(ido-vertical-mode 1)
 
 ;; SAVEPLACE
 (require 'saveplace)
@@ -250,29 +251,6 @@ there's a region, all lines that region covers will be duplicated."
 ;; ==================================================
 ;;               APPEARENCE
 ;; ==================================================
-(load-theme 'flatland t)
+(load-theme 'solarized-dark t)
 
 (powerline-default-theme)
-(setq powerline-color1 "gray30")
-(setq powerline-color2 "gray45")
-(set-face-attribute 'mode-line nil
-                    :background "gray22"
-                    :foreground "F0DFAF"
-                    :box nil)
-
-;; color-theme-sanityinc-tomorrow
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-enabled-themes (quote (sanityinc-tomorrow-eighties)))
- '(custom-safe-themes (quote ("86f4407f65d848ccdbbbf7384de75ba320d26ccecd719d50239f2c36bec18628" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" default))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-
-;; ==================================================
