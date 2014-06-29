@@ -12,6 +12,7 @@
 (setq ring-bell-function 'ignore)
 (setq default-directory "~/")
 
+(global-auto-revert-mode 1)
 (global-linum-mode -1)
 (global-hl-line-mode -1)
 (global-visual-line-mode t)
@@ -27,6 +28,12 @@
 (setq-default indent-tabs-mode nil)
 (fset 'yes-or-no-p 'y-or-n-p)
 (electric-indent-mode t)
+
+(setq redisplay-dont-pause t
+      scroll-margin 1
+      scroll-step 1
+      scroll-conservatively 10000
+      scroll-preserve-screen-position 1)
 
 (when (window-system)
   (tooltip-mode -1)
@@ -84,6 +91,8 @@
 (define-key pedro-mode-map (kbd "M-RET") 'line-below)
 (define-key pedro-mode-map (kbd "C-S-y") 'duplicate-current-line-or-region)
 (define-key pedro-mode-map (kbd "C-c r") 'rename-this-buffer-and-file)
+(define-key pedro-mode-map (kbd "C-'") 'comment-or-uncomment-line-or-region)
+(define-key pedro-mode-map (kbd "M-'") 'delete-indentation)
 
 ;; ==================================================
 ;;             GLOBAL MAPPINGS
@@ -217,6 +226,15 @@ there's a region, all lines that region covers will be duplicated."
                (set-buffer-modified-p nil)
                (message "File '%s' successfully renamed to '%s'" name (file-name-nondirectory new-name))))))))
 
+(defun comment-or-uncomment-line-or-region ()
+  "Comments or uncomments the current line or region."
+  (interactive)
+  (if (region-active-p)
+      (comment-or-uncomment-region (region-beginning) (region-end))
+    (comment-or-uncomment-region (line-beginning-position) (line-end-position))
+    )
+  )
+
 ;; ==================================================
 
 ;; Define my own minor mode and activate it
@@ -251,6 +269,7 @@ there's a region, all lines that region covers will be duplicated."
 ;; ==================================================
 ;;               APPEARENCE
 ;; ==================================================
+
 (load-theme 'solarized-dark t)
 
 (powerline-default-theme)
