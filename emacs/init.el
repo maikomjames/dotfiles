@@ -112,6 +112,10 @@
 ;;              PLUGINS and PACKAGES
 ;; ==================================================
 
+;; FOLD DWIM
+(require 'fold-dwim)
+(define-key pedro-mode-map (kbd "M-[") 'fold-dwim-toggle-selective-display)
+
 ;; DIRED SETTINGS
 (require 'dired)
 (setq dired-recursive-deletes (quote top))

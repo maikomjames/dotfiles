@@ -21,3 +21,5 @@
 (depends-on "magit")
 (depends-on "git-gutter")
 (depends-on "org-pomodoro")
+
+(depends-on "fold-dwim")
