@@ -65,11 +65,17 @@
 ;; Define my own keymap
 (defvar pedro-mode-map (make-keymap) "my keys")
 
+;; Change C-x with C-n and C-c with C-i on Colemak layout
+(keyboard-translate ?\C-j ?\C-x)
+(keyboard-translate ?\C-x ?\C-j)
+(keyboard-translate ?\C-i ?\C-c)
+(keyboard-translate ?\C-c ?\C-i)
+
 ;; Cursor keys on home row
-(define-key pedro-mode-map (kbd "M-k") 'next-line)
-(define-key pedro-mode-map (kbd "M-i") 'previous-line)
-(define-key pedro-mode-map (kbd "M-j") 'backward-char)
-(define-key pedro-mode-map (kbd "M-l") 'forward-char)
+;; (define-key pedro-mode-map (kbd "M-k") 'next-line)
+;; (define-key pedro-mode-map (kbd "M-i") 'previous-line)
+;; (define-key pedro-mode-map (kbd "C-u") 'backward-char)
+;; (define-key pedro-mode-map (kbd "M-l") 'forward-char)
 
 ;; WINDMOVE
 (define-key pedro-mode-map (kbd "C-M-j")  'windmove-left)
@@ -86,12 +92,12 @@
 (define-key pedro-mode-map (kbd "C-u C-u SPC") 'ace-jump-line-mode)
 
 ;; CUSTOM FUNCTIONS
-(define-key pedro-mode-map (kbd "C-;") 'select-current-line)
 (define-key pedro-mode-map (kbd "<C-return>") 'line-above)
 (define-key pedro-mode-map (kbd "M-RET") 'line-below)
 (define-key pedro-mode-map (kbd "C-S-y") 'duplicate-current-line-or-region)
 (define-key pedro-mode-map (kbd "C-c r") 'rename-this-buffer-and-file)
-(define-key pedro-mode-map (kbd "C-'") 'comment-or-uncomment-line-or-region)
+(define-key pedro-mode-map (kbd "C-l") 'comment-or-uncomment-line-or-region)
+(define-key pedro-mode-map (kbd "C-;") 'select-current-line)
 (define-key pedro-mode-map (kbd "M-'") 'delete-indentation)
 
 ;; ==================================================
@@ -271,5 +277,3 @@ there's a region, all lines that region covers will be duplicated."
 ;; ==================================================
 
 (load-theme 'solarized-dark t)
-
-(powerline-default-theme)
