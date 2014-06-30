@@ -37,8 +37,8 @@
 [push]
         default = tracking
 
-[branch "master"]
-        rebase = false
+[branch]
+        autosetuprebase = always
 
 [Color "diff"]
         whitespace = red reverse
