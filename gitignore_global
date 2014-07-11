@@ -34,4 +34,5 @@ emacs/saveplace.el
 emacs/projectile-bookmarks.eld
 emacs/auto-save-list/*
 emacs/.cask/
+emacs/menu_log.notes
 *~

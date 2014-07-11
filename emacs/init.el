@@ -87,9 +87,9 @@
 (define-key pedro-mode-map (kbd "M-RET") 'line-below)
 (define-key pedro-mode-map (kbd "C-S-y") 'duplicate-current-line-or-region)
 (define-key pedro-mode-map (kbd "C-c r") 'rename-this-buffer-and-file)
-(define-key pedro-mode-map (kbd "C-l") 'comment-or-uncomment-line-or-region)
-(define-key pedro-mode-map (kbd "C-;") 'select-current-line)
-(define-key pedro-mode-map (kbd "M-'") 'delete-indentation)
+(define-key pedro-mode-map (kbd "C-M-l") 'comment-or-uncomment-line-or-region)
+(define-key pedro-mode-map (kbd "C-M-;") 'select-current-line)
+(define-key pedro-mode-map (kbd "C-M-]") 'delete-indentation)
 
 ;; ==================================================
 ;;             GLOBAL MAPPINGS
@@ -105,7 +105,7 @@
 
 ;; FOLD DWIM
 (require 'fold-dwim)
-(define-key pedro-mode-map (kbd "M-[") 'fold-dwim-toggle-selective-display)
+(define-key pedro-mode-map (kbd "C-M-y") 'fold-dwim-toggle-selective-display)
 
 ;; DIRED SETTINGS
 (require 'dired)

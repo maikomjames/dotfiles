@@ -42,3 +42,5 @@
 
 [Color "diff"]
         whitespace = red reverse
+[branch "master"]
+        rebase = false
