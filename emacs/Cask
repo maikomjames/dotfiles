@@ -6,7 +6,6 @@
 (depends-on "expand-region")
 (depends-on "ace-jump-mode")
 
-(depends-on "ido-vertical-mode")
 (depends-on "flx-ido")
 
 (depends-on "projectile")
@@ -19,7 +18,4 @@
 (depends-on "php-mode")
 
 (depends-on "magit")
-(depends-on "git-gutter")
-(depends-on "org-pomodoro")
-
 (depends-on "fold-dwim")

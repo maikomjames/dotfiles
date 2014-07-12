@@ -78,18 +78,17 @@
 (define-key pedro-mode-map (kbd "C-o") 'er/expand-region)
 
 ;; ACE JUMP MODE
-(define-key pedro-mode-map (kbd "C-c SPC") 'ace-jump-mode)
-(define-key pedro-mode-map (kbd "C-c C-c SPC") 'ace-jump-char-mode)
+(define-key pedro-mode-map (kbd "C-c SPC") 'ace-jump-char-mode)
+(define-key pedro-mode-map (kbd "C-c C-c SPC") 'ace-jump-mode)
 (define-key pedro-mode-map (kbd "C-u C-u SPC") 'ace-jump-line-mode)
 
 ;; CUSTOM FUNCTIONS
 (define-key pedro-mode-map (kbd "<C-return>") 'line-above)
 (define-key pedro-mode-map (kbd "M-RET") 'line-below)
-(define-key pedro-mode-map (kbd "C-S-y") 'duplicate-current-line-or-region)
+(define-key pedro-mode-map (kbd "C-c y") 'duplicate-current-line-or-region)
 (define-key pedro-mode-map (kbd "C-c r") 'rename-this-buffer-and-file)
 (define-key pedro-mode-map (kbd "C-M-l") 'comment-or-uncomment-line-or-region)
 (define-key pedro-mode-map (kbd "C-M-;") 'select-current-line)
-(define-key pedro-mode-map (kbd "C-M-]") 'delete-indentation)
 
 ;; ==================================================
 ;;             GLOBAL MAPPINGS
@@ -121,7 +120,6 @@
 (ido-everywhere 1)
 (flx-ido-mode 1)
 (setq ido-use-faces nil)
-(ido-vertical-mode 1)
 
 ;; SAVEPLACE
 (require 'saveplace)
@@ -145,7 +143,7 @@
 (global-set-key (kbd "C-c h") 'helm-projectile)
 
 ;; MAGIT status
-(define-key pedro-mode-map (kbd "C-c C-t")  'magit-status)
+(define-key pedro-mode-map (kbd "C-c g")  'magit-status)
 
 ;; ==================================================
 ;;              CUSTOM FUNCTIONS
