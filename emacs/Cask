@@ -7,6 +7,7 @@
 (depends-on "ace-jump-mode")
 
 (depends-on "flx-ido")
+(depends-on "ido-vertical-mode")
 
 (depends-on "projectile")
 (depends-on "helm-projectile")

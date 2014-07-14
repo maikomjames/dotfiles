@@ -120,6 +120,7 @@
 (ido-everywhere 1)
 (flx-ido-mode 1)
 (setq ido-use-faces nil)
+(ido-vertical-mode 1)
 
 ;; SAVEPLACE
 (require 'saveplace)
