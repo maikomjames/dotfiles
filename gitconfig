@@ -9,6 +9,7 @@
         auto = 1  # cleanup unnecessary files and optimize the local repository
 
 [alias]
+        s = status
         st = status -sb
         aa = add --all
         cm = commit -m

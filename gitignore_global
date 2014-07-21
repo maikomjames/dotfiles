@@ -36,3 +36,7 @@ emacs/auto-save-list/*
 emacs/.cask/
 emacs/menu_log.notes
 *~
+
+# Outros
+# ----------------------------------------------------------------------------------------------
+vendors

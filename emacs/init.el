@@ -54,6 +54,9 @@
 ;; Web-mode
 (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.ctp\\'" . web-mode))
+(setq web-mode-markup-indent-offset 4)
+(setq web-mode-code-indent-offset 4)
 
 ;; ORG mode
 (add-to-list 'auto-mode-alist '("\\.txt\\'" . org-mode))
@@ -72,14 +75,15 @@
 (keyboard-translate ?\C-c ?\C-i)
 
 ;; WINDMOVE
-(define-key pedro-mode-map (kbd "C-M-[")  'other-window)
+(define-key pedro-mode-map (kbd "M-n")  'other-window)
+(define-key pedro-mode-map (kbd "M-p")  'other-window)
 
 ;; EXPAND REGION
 (define-key pedro-mode-map (kbd "C-o") 'er/expand-region)
 
 ;; ACE JUMP MODE
-(define-key pedro-mode-map (kbd "C-c SPC") 'ace-jump-char-mode)
-(define-key pedro-mode-map (kbd "C-c C-c SPC") 'ace-jump-mode)
+(define-key pedro-mode-map (kbd "C-c SPC") 'ace-jump-mode)
+(define-key pedro-mode-map (kbd "C-c C-c SPC") 'ace-jump-char-mode)
 (define-key pedro-mode-map (kbd "C-u C-u SPC") 'ace-jump-line-mode)
 
 ;; CUSTOM FUNCTIONS
