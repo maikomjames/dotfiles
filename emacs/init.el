@@ -75,7 +75,6 @@
 (keyboard-translate ?\C-c ?\C-i)
 
 ;; WINDMOVE
-(define-key pedro-mode-map (kbd "M-n")  'other-window)
 (define-key pedro-mode-map (kbd "M-p")  'other-window)
 
 ;; EXPAND REGION
@@ -93,6 +92,8 @@
 (define-key pedro-mode-map (kbd "C-c r") 'rename-this-buffer-and-file)
 (define-key pedro-mode-map (kbd "C-M-l") 'comment-or-uncomment-line-or-region)
 (define-key pedro-mode-map (kbd "C-M-;") 'select-current-line)
+(define-key pedro-mode-map (kbd "C-u k") 'dired-kill-subdir)
+(define-key pedro-mode-map (kbd "M-n") 'delete-indentation)
 
 ;; ==================================================
 ;;             GLOBAL MAPPINGS
