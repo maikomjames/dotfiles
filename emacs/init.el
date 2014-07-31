@@ -36,6 +36,10 @@
       scroll-preserve-screen-position 1)
 
 (when (window-system)
+  (setq frame-title-format
+        '((:eval (if (buffer-file-name)
+                     (abbreviate-file-name (buffer-file-name))
+                   "%b"))))
   (tooltip-mode -1)
   (set-fringe-mode -1)
   (scroll-bar-mode -1)
