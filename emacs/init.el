@@ -98,6 +98,7 @@
 (define-key pedro-mode-map (kbd "C-M-;") 'select-current-line)
 (define-key pedro-mode-map (kbd "C-u k") 'dired-kill-subdir)
 (define-key pedro-mode-map (kbd "M-n") 'delete-indentation)
+(define-key pedro-mode-map (kbd "M-s") 'search-selection)
 
 ;; ==================================================
 ;;             GLOBAL MAPPINGS
@@ -241,6 +242,18 @@ there's a region, all lines that region covers will be duplicated."
   (if (region-active-p)
       (comment-or-uncomment-region (region-beginning) (region-end))
     (comment-or-uncomment-region (line-beginning-position) (line-end-position))
+    )
+  )
+
+(defun search-selection (beg end)
+  "search for selected text"
+  (interactive "r")
+  (let (
+        (selection (buffer-substring-no-properties beg end))
+        )
+    (deactivate-mark)
+    (isearch-mode t nil nil nil)
+    (isearch-yank-string selection)
     )
   )
 
