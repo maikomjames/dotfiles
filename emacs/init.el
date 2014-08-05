@@ -26,6 +26,7 @@
 (setq inhibit-startup-message t)
 (setq-default tab-width 2)
 (setq-default indent-tabs-mode nil)
+(setq-default tab-always-indent nil)
 (fset 'yes-or-no-p 'y-or-n-p)
 (electric-indent-mode t)
 
