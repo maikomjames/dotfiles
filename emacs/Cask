@@ -21,4 +21,3 @@
 (depends-on "fold-dwim")
 
 (depends-on "powerline")
-(depends-on "color-theme-sanityinc-solarized")
