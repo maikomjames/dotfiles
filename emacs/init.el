@@ -21,7 +21,7 @@
 
 ;; show parenthesis match
 (show-paren-mode 1)
-(setq show-paren-style 'expression)
+;; (setq show-paren-style 'expression)
 
 (setq backup-directory-alist `(("." . "~/.saves")))
 (setq make-backup-file nil)
@@ -84,6 +84,7 @@
 
 ;; WINDMOVE
 (define-key pedro-mode-map (kbd "M-[")  'other-window)
+(define-key pedro-mode-map (kbd "M-p")  'other-window)
 
 ;; EXPAND REGION
 (define-key pedro-mode-map (kbd "C-o") 'er/expand-region)
@@ -93,8 +94,8 @@
 (define-key pedro-mode-map (kbd "C-u SPC") 'ace-jump-char-mode)
 
 ;; CUSTOM FUNCTIONS
-(define-key pedro-mode-map (kbd "<C-return>") 'line-above)
-(define-key pedro-mode-map (kbd "M-RET") 'line-below)
+(define-key pedro-mode-map (kbd "<C-return>") 'open-line-above)
+(define-key pedro-mode-map (kbd "M-RET") 'open-line-below)
 (define-key pedro-mode-map (kbd "C-c y") 'duplicate-current-line-or-region)
 (define-key pedro-mode-map (kbd "C-c r") 'rename-this-buffer-and-file)
 (define-key pedro-mode-map (kbd "C-l") 'comment-or-uncomment-line-or-region)
@@ -102,6 +103,8 @@
 (define-key pedro-mode-map (kbd "C-u k") 'dired-kill-subdir)
 (define-key pedro-mode-map (kbd "M-n") 'delete-indentation)
 (define-key pedro-mode-map (kbd "M-s") 'search-selection)
+(define-key pedro-mode-map (kbd "<C-M-down>") 'move-line-down)
+(define-key pedro-mode-map (kbd "<C-M-up>") 'move-line-up)
 
 ;; ==================================================
 ;;             GLOBAL MAPPINGS
@@ -110,10 +113,12 @@
 ;; CUSTOM FUNCTIONS
 (global-set-key [remap kill-region] 'cut-line-or-region)
 (global-set-key [remap kill-ring-save] 'copy-line-or-region)
+(global-set-key [remap goto-line] 'goto-line-with-feedback)
 
 ;; ==================================================
 ;;              PLUGINS and PACKAGES
 ;; ==================================================
+
 
 ;; FOLD DWIM
 (require 'fold-dwim)
@@ -158,10 +163,33 @@
 
 ;; MAGIT status
 (define-key pedro-mode-map (kbd "C-c g")  'magit-status)
+(define-key pedro-mode-map (kbd "q") 'magit-quit-session)
 
 ;; ==================================================
 ;;              CUSTOM FUNCTIONS
 ;; ==================================================
+
+;; full screen magit-status
+(defadvice magit-status (around magit-fullscreen activate)
+  (window-configuration-to-register :magit-fullscreen)
+  ad-do-it
+  (delete-other-windows))
+
+(defun magit-quit-session ()
+  "Restores the previous window configuration and kills the magit buffer"
+  (interactive)
+  (kill-buffer)
+  (jump-to-register :magit-fullscreen))
+
+;; GOTO LINE M-g g
+(defun goto-line-with-feedback ()
+  "Show line numbers temporarily, while prompting for the line number input"
+  (interactive)
+  (unwind-protect
+      (progn
+        (linum-mode 1)
+        (goto-line (read-number "Goto line: ")))
+    (linum-mode -1)))
 
 (defun select-current-line ()
   "Selects the current line"
@@ -169,22 +197,35 @@
   (end-of-line)
   (push-mark (line-beginning-position) nil t))
 
-(defun line-above()
-  "Inserts line above current one"
+(defun open-line-below ()
   (interactive)
-  (move-beginning-of-line nil)
-  (newline-and-indent)
-  (forward-line -1)
-  (indent-according-to-mode))
+  (end-of-line)
+  (newline)
+  (indent-for-tab-command))
 
-(defun line-below()
-  "Inserts line below current one"
+(defun open-line-above ()
   (interactive)
-  (move-beginning-of-line nil)
-  (forward-line)
-  (newline-and-indent)
+  (beginning-of-line)
+  (newline)
   (forward-line -1)
-  (indent-according-to-mode))
+  (indent-for-tab-command))
+
+(defun move-line-down ()
+  (interactive)
+  (let ((col (current-column)))
+    (save-excursion
+      (forward-line)
+      (transpose-lines 1))
+    (forward-line)
+    (move-to-column col)))
+
+(defun move-line-up ()
+  (interactive)
+  (let ((col (current-column)))
+    (save-excursion
+      (forward-line)
+      (transpose-lines -1))
+    (move-to-column col)))
 
 (defun cut-line-or-region()
   "Kill current line if no region is active, otherwise kills region."
@@ -271,7 +312,19 @@ there's a region, all lines that region covers will be duplicated."
 ;; ==================================================
 ;;               APPEARENCE
 ;; ==================================================
-
 (powerline-default-theme)
 
-(load-theme 'misterioso t)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ansi-color-names-vector ["#212526" "#ff4b4b" "#b4fa70" "#fce94f" "#729fcf" "#ad7fa8" "#8cc4ff" "#eeeeec"])
+ '(custom-enabled-themes (quote (sanityinc-tomorrow-eighties)))
+ '(custom-safe-themes (quote ("628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" default))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
