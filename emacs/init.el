@@ -114,6 +114,8 @@
 (global-set-key [remap kill-region] 'cut-line-or-region)
 (global-set-key [remap kill-ring-save] 'copy-line-or-region)
 (global-set-key [remap goto-line] 'goto-line-with-feedback)
+(global-set-key [C-S-right] 'shift-right)
+(global-set-key [C-S-left] 'shift-left)
 
 ;; ==================================================
 ;;              PLUGINS and PACKAGES
@@ -163,7 +165,6 @@
 
 ;; MAGIT status
 (define-key pedro-mode-map (kbd "C-c g")  'magit-status)
-(define-key pedro-mode-map (kbd "q") 'magit-quit-session)
 
 ;; ==================================================
 ;;              CUSTOM FUNCTIONS
@@ -174,12 +175,6 @@
   (window-configuration-to-register :magit-fullscreen)
   ad-do-it
   (delete-other-windows))
-
-(defun magit-quit-session ()
-  "Restores the previous window configuration and kills the magit buffer"
-  (interactive)
-  (kill-buffer)
-  (jump-to-register :magit-fullscreen))
 
 ;; GOTO LINE M-g g
 (defun goto-line-with-feedback ()
@@ -300,6 +295,26 @@ there's a region, all lines that region covers will be duplicated."
     (isearch-yank-string selection)
     )
   )
+
+;; Shift the selected region right if distance is postive, left if
+;; negative
+
+(defun shift-region (distance)
+  (let ((mark (mark)))
+    (save-excursion
+      (indent-rigidly (region-beginning) (region-end) distance)
+      (push-mark mark t t)
+      ;; Tell the command loop not to deactivate the mark
+      ;; for transient mark mode
+      (setq deactivate-mark nil))))
+
+(defun shift-right ()
+  (interactive)
+  (shift-region 1))
+
+(defun shift-left ()
+  (interactive)
+  (shift-region -1))
 
 ;; ==================================================
 
