@@ -66,6 +66,10 @@
 (setq web-mode-markup-indent-offset 4)
 (setq web-mode-code-indent-offset 4)
 
+;; Emmet
+(add-hook 'html-mode-hook 'emmet-mode)
+(add-hook 'web-mode-hook 'emmet-mode)
+
 ;; ORG mode
 (add-to-list 'auto-mode-alist '("\\.txt\\'" . org-mode))
 
