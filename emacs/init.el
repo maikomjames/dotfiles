@@ -170,6 +170,10 @@
 ;; MAGIT status
 (define-key pedro-mode-map (kbd "C-c g")  'magit-status)
 
+;; MULTIPLE CURSORS
+(define-key pedro-mode-map (kbd "C-'")  'mc/mark-next-like-this)
+(define-key pedro-mode-map (kbd "C-\"")  'mc/mark-previous-like-this)
+
 ;; ==================================================
 ;;              CUSTOM FUNCTIONS
 ;; ==================================================
