@@ -125,6 +125,19 @@
 ;;              PLUGINS and PACKAGES
 ;; ==================================================
 
+;; Fill Column Indicator
+(setq-default fci-rule-column 100)
+  (setq fci-handle-truncate-lines nil)
+(define-globalized-minor-mode global-fci-mode fci-mode (lambda ()
+                                                         (fci-mode 1)))
+  (global-fci-mode 1)
+  (defun auto-fci-mode (&optional unused)
+    (if (> (window-width) fci-rule-column)
+        (fci-mode 1)
+      (fci-mode 0))
+    )
+  (add-hook 'after-change-major-mode-hook 'auto-fci-mode)
+(add-hook 'window-configuration-change-hook 'auto-fci-mode)
 
 ;; FOLD DWIM
 (require 'fold-dwim)
@@ -171,8 +184,8 @@
 (define-key pedro-mode-map (kbd "C-c g")  'magit-status)
 
 ;; MULTIPLE CURSORS
-(define-key pedro-mode-map (kbd "C-'")  'mc/mark-next-like-this)
-(define-key pedro-mode-map (kbd "C-\"")  'mc/mark-previous-like-this)
+(define-key pedro-mode-map (kbd "C->") 'mc/mark-next-like-this)
+(define-key pedro-mode-map (kbd "C-<") 'mc/mark-previous-like-this)
 
 ;; ==================================================
 ;;              CUSTOM FUNCTIONS
@@ -281,7 +294,8 @@ there's a region, all lines that region covers will be duplicated."
                (rename-buffer new-name)
                (set-visited-file-name new-name)
                (set-buffer-modified-p nil)
-               (message "File '%s' successfully renamed to '%s'" name (file-name-nondirectory new-name))))))))
+               (message "File '%s' successfully renamed to '%s'" name
+                        (file-name-nondirectory new-name))))))))
 
 (defun comment-or-uncomment-line-or-region ()
   "Comments or uncomments the current line or region."
@@ -342,9 +356,18 @@ there's a region, all lines that region covers will be duplicated."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ansi-color-names-vector ["#212526" "#ff4b4b" "#b4fa70" "#fce94f" "#729fcf" "#ad7fa8" "#8cc4ff" "#eeeeec"])
+ '(ansi-color-names-vector ["#212526"
+                            "#ff4b4b"
+                            "#b4fa70"
+                            "#fce94f"
+                            "#729fcf"
+                            "#ad7fa8"
+                            "#8cc4ff"
+                            "#eeeeec"])
  '(custom-enabled-themes (quote (sanityinc-tomorrow-eighties)))
- '(custom-safe-themes (quote ("628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" default))))
+ '(custom-safe-themes (quote
+                       ("628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" default)
+                       )))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

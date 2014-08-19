@@ -25,3 +25,6 @@
 
 (depends-on "powerline")
 (depends-on "color-theme-sanityinc-tomorrow")
+
+(depends-on "fill-column-indicator")
+
