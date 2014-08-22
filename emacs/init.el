@@ -87,21 +87,20 @@
 (keyboard-translate ?\C-c ?\C-i)
 
 ;; WINDMOVE
-(define-key pedro-mode-map (kbd "M-[")  'other-window)
-(define-key pedro-mode-map (kbd "M-p")  'other-window)
+(define-key pedro-mode-map (kbd "C-'")  'other-window)
 
 ;; EXPAND REGION
 (define-key pedro-mode-map (kbd "C-o") 'er/expand-region)
 
 ;; ACE JUMP MODE
 (define-key pedro-mode-map (kbd "M-o") 'ace-jump-mode)
-(define-key pedro-mode-map (kbd "C-u SPC") 'ace-jump-char-mode)
+(define-key pedro-mode-map (kbd "C-z o") 'ace-jump-char-mode)
 
 ;; CUSTOM FUNCTIONS
 (define-key pedro-mode-map (kbd "<C-return>") 'open-line-above)
 (define-key pedro-mode-map (kbd "M-RET") 'open-line-below)
-(define-key pedro-mode-map (kbd "C-c y") 'duplicate-current-line-or-region)
-(define-key pedro-mode-map (kbd "C-c r") 'rename-this-buffer-and-file)
+(define-key pedro-mode-map (kbd "C-z y") 'duplicate-current-line-or-region)
+(define-key pedro-mode-map (kbd "C-z r") 'rename-this-buffer-and-file)
 (define-key pedro-mode-map (kbd "C-l") 'comment-or-uncomment-line-or-region)
 (define-key pedro-mode-map (kbd "C-;") 'select-current-line)
 (define-key pedro-mode-map (kbd "C-u k") 'dired-kill-subdir)
@@ -120,6 +119,8 @@
 (global-set-key [remap goto-line] 'goto-line-with-feedback)
 (global-set-key [C-S-right] 'shift-right)
 (global-set-key [C-S-left] 'shift-left)
+(global-unset-key "\C-z")
+(global-unset-key "\C-x\C-z")
 
 ;; ==================================================
 ;;              PLUGINS and PACKAGES
