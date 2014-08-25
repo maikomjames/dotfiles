@@ -106,8 +106,6 @@
 (define-key pedro-mode-map (kbd "C-u k") 'dired-kill-subdir)
 (define-key pedro-mode-map (kbd "M-n") 'delete-indentation)
 (define-key pedro-mode-map (kbd "M-s") 'search-selection)
-(define-key pedro-mode-map (kbd "<C-M-down>") 'move-line-down)
-(define-key pedro-mode-map (kbd "<C-M-up>") 'move-line-up)
 
 ;; ==================================================
 ;;             GLOBAL MAPPINGS
@@ -116,9 +114,6 @@
 ;; CUSTOM FUNCTIONS
 (global-set-key [remap kill-region] 'cut-line-or-region)
 (global-set-key [remap kill-ring-save] 'copy-line-or-region)
-(global-set-key [remap goto-line] 'goto-line-with-feedback)
-(global-set-key [C-S-right] 'shift-right)
-(global-set-key [C-S-left] 'shift-left)
 (global-unset-key "\C-z")
 (global-unset-key "\C-x\C-z")
 
@@ -198,16 +193,6 @@
   ad-do-it
   (delete-other-windows))
 
-;; GOTO LINE M-g g
-(defun goto-line-with-feedback ()
-  "Show line numbers temporarily, while prompting for the line number input"
-  (interactive)
-  (unwind-protect
-      (progn
-        (linum-mode 1)
-        (goto-line (read-number "Goto line: ")))
-    (linum-mode -1)))
-
 (defun select-current-line ()
   "Selects the current line"
   (interactive)
@@ -226,23 +211,6 @@
   (newline)
   (forward-line -1)
   (indent-for-tab-command))
-
-(defun move-line-down ()
-  (interactive)
-  (let ((col (current-column)))
-    (save-excursion
-      (forward-line)
-      (transpose-lines 1))
-    (forward-line)
-    (move-to-column col)))
-
-(defun move-line-up ()
-  (interactive)
-  (let ((col (current-column)))
-    (save-excursion
-      (forward-line)
-      (transpose-lines -1))
-    (move-to-column col)))
 
 (defun cut-line-or-region()
   "Kill current line if no region is active, otherwise kills region."
@@ -318,26 +286,6 @@ there's a region, all lines that region covers will be duplicated."
     (isearch-yank-string selection)
     )
   )
-
-;; Shift the selected region right if distance is postive, left if
-;; negative
-
-(defun shift-region (distance)
-  (let ((mark (mark)))
-    (save-excursion
-      (indent-rigidly (region-beginning) (region-end) distance)
-      (push-mark mark t t)
-      ;; Tell the command loop not to deactivate the mark
-      ;; for transient mark mode
-      (setq deactivate-mark nil))))
-
-(defun shift-right ()
-  (interactive)
-  (shift-region 1))
-
-(defun shift-left ()
-  (interactive)
-  (shift-region -1))
 
 ;; ==================================================
 
