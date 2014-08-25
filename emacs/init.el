@@ -13,15 +13,10 @@
 (setq default-directory "~/")
 
 (global-auto-revert-mode 1)
-(global-linum-mode -1)
-(global-hl-line-mode -1)
 (global-visual-line-mode t)
 (delete-selection-mode t)
 (blink-cursor-mode t)
-
-;; show parenthesis match
 (show-paren-mode 1)
-;; (setq show-paren-style 'expression)
 
 (setq backup-directory-alist `(("." . "~/.saves")))
 (setq make-backup-file nil)
@@ -103,7 +98,7 @@
 (define-key pedro-mode-map (kbd "C-z r") 'rename-this-buffer-and-file)
 (define-key pedro-mode-map (kbd "C-l") 'comment-or-uncomment-line-or-region)
 (define-key pedro-mode-map (kbd "C-;") 'select-current-line)
-(define-key pedro-mode-map (kbd "C-u k") 'dired-kill-subdir)
+(define-key pedro-mode-map (kbd "C-z k") 'dired-kill-subdir)
 (define-key pedro-mode-map (kbd "M-n") 'delete-indentation)
 (define-key pedro-mode-map (kbd "M-s") 'search-selection)
 
