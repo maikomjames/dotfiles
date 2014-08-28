@@ -168,6 +168,9 @@
 (define-key pedro-mode-map (kbd "C-,") 'mc/mark-next-like-this)
 (define-key pedro-mode-map (kbd "C-.") 'mc/mark-previous-like-this)
 
+;; Ag - the silver searcher
+(setq ag-highlight-search 't)
+
 ;; ==================================================
 ;;              CUSTOM FUNCTIONS
 ;; ==================================================
