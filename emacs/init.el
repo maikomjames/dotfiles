@@ -158,6 +158,7 @@
 
 ;; PROJECTILE and HELM
 (global-set-key (kbd "C-z h") 'helm-projectile)
+(global-set-key (kbd "C-z b") 'helm-buffers-list)
 
 ;; MAGIT status
 (define-key pedro-mode-map (kbd "C-z s")  'magit-status)
