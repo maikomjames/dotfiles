@@ -72,35 +72,30 @@
 ;; Define my own keymap
 (defvar pedro-mode-map (make-keymap) "my keys")
 
-;; Cursor keys on home row
-(define-key pedro-mode-map (kbd "M-k") 'next-line)
-(define-key pedro-mode-map (kbd "M-i") 'previous-line)
-(define-key pedro-mode-map (kbd "M-j") 'backward-char)
-(define-key pedro-mode-map (kbd "M-l") 'forward-char)
-
 ;; Change C-x with C-n and C-c with C-i on Colemak layout
 (keyboard-translate ?\C-j ?\C-x)
 (keyboard-translate ?\C-x ?\C-j)
 (keyboard-translate ?\C-i ?\C-c)
 (keyboard-translate ?\C-c ?\C-i)
 
+;; CURSOR KEYS
+(define-key pedro-mode-map (kbd "M-k") 'next-line)
+(define-key pedro-mode-map (kbd "M-i") 'previous-line)
+(define-key pedro-mode-map (kbd "M-j") 'backward-char)
+(define-key pedro-mode-map (kbd "M-l") 'forward-char)
+
 ;; WINDMOVE
-(define-key pedro-mode-map (kbd "C-;")  'other-window)
-
-;; EXPAND REGION
-(define-key pedro-mode-map (kbd "C-o") 'er/expand-region)
-
-;; ACE JUMP MODE
-(define-key pedro-mode-map (kbd "M-o") 'ace-jump-mode)
-(define-key pedro-mode-map (kbd "C-z o") 'ace-jump-char-mode)
+(define-key pedro-mode-map (kbd "C-M-j")  'windmove-left)
+(define-key pedro-mode-map (kbd "C-M-l") 'windmove-right)
+(define-key pedro-mode-map (kbd "C-M-i")    'windmove-up)
+(define-key pedro-mode-map (kbd "C-M-k")  'windmove-down)
 
 ;; CUSTOM FUNCTIONS
 (define-key pedro-mode-map (kbd "<C-return>") 'open-line-above)
 (define-key pedro-mode-map (kbd "M-RET") 'open-line-below)
 (define-key pedro-mode-map (kbd "C-z y") 'duplicate-current-line-or-region)
 (define-key pedro-mode-map (kbd "C-z r") 'rename-this-buffer-and-file)
-(define-key pedro-mode-map (kbd "C-z k") 'dired-kill-subdir)
-(define-key pedro-mode-map (kbd "C-M-l") 'comment-or-uncomment-line-or-region)
+(define-key pedro-mode-map (kbd "C-l") 'comment-or-uncomment-line-or-region)
 (define-key pedro-mode-map (kbd "M-n") 'delete-indentation)
 (define-key pedro-mode-map (kbd "M-s") 'search-selection)
 
@@ -117,6 +112,12 @@
 ;; ==================================================
 ;;              PLUGINS and PACKAGES
 ;; ==================================================
+
+;; EXPAND REGION
+(define-key pedro-mode-map (kbd "C-o") 'er/expand-region)
+
+;; ACE JUMP MODE
+(define-key pedro-mode-map (kbd "M-o") 'ace-jump-mode)
 
 ;; FOLD DWIM
 (require 'fold-dwim)
@@ -164,9 +165,15 @@
 (define-key pedro-mode-map (kbd "C-z s")  'magit-status)
 (define-key pedro-mode-map (kbd "C-z l")  'magit-log)
 
+;; full screen magit-status
+(defadvice magit-status (around magit-fullscreen activate)
+  (window-configuration-to-register :magit-fullscreen)
+  ad-do-it
+  (delete-other-windows))
+
 ;; MULTIPLE CURSORS
-(define-key pedro-mode-map (kbd "C-,") 'mc/mark-next-like-this)
-(define-key pedro-mode-map (kbd "C-.") 'mc/mark-previous-like-this)
+(define-key pedro-mode-map (kbd "C-,") 'mc/mark-previous-like-this)
+(define-key pedro-mode-map (kbd "C-.") 'mc/mark-next-like-this)
 
 ;; Ag - the silver searcher
 (setq ag-highlight-search 't)
@@ -174,12 +181,6 @@
 ;; ==================================================
 ;;              CUSTOM FUNCTIONS
 ;; ==================================================
-
-;; full screen magit-status
-(defadvice magit-status (around magit-fullscreen activate)
-  (window-configuration-to-register :magit-fullscreen)
-  ad-do-it
-  (delete-other-windows))
 
 (defun open-line-below ()
   (interactive)
