@@ -11,6 +11,8 @@ ZSH_THEME="robbyrussell"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+alias e="/Applications/Emacs.app/Contents/MacOS/Emacs"
+
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -53,6 +55,7 @@ plugins=(git vagrant zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+export PATH=usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:$PATH
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -79,4 +82,5 @@ export PATH="$HOME/.cask/bin:$PATH"
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
+# Npm
+export PATH=/usr/local/bin:$PATH
