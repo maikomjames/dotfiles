@@ -7,8 +7,7 @@
 ;; ==================================================
 
 (set-frame-font "Source Code Pro for Powerline-14")
-(setq mac-command-modifier 'meta)
-(setq mac-option-modifier nil)
+(setq mac-command-modifier nil)
 (setq ring-bell-function 'ignore)
 (setq default-directory "~/")
 
