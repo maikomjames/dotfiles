@@ -32,7 +32,7 @@
         summary = true
 
 [core]
-        editor = vim
+        editor = emacs
         excludesfile = ~/.gitignore_global
 
 [push]

@@ -68,6 +68,8 @@ export PATH=usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:$PATH
 # else
 #   export EDITOR='mvim'
 # fi
+export VISUAL="emacs -Q -nw"
+export EDITOR="emacs -Q -nw"
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
