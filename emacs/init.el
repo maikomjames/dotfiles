@@ -7,7 +7,7 @@
 ;; ==================================================
 
 (set-frame-font "Source Code Pro for Powerline-14")
-(setq mac-command-modifier nil)
+(setq mac-command-modifier 'meta)
 (setq ring-bell-function 'ignore)
 (setq default-directory "~/")
 
@@ -77,23 +77,9 @@
 (keyboard-translate ?\C-i ?\C-c)
 (keyboard-translate ?\C-c ?\C-i)
 
-;; CURSOR KEYS
-(define-key pedro-mode-map (kbd "M-k") 'next-line)
-(define-key pedro-mode-map (kbd "M-i") 'previous-line)
-(define-key pedro-mode-map (kbd "M-j") 'backward-char)
-(define-key pedro-mode-map (kbd "M-l") 'forward-char)
-
-;; WINDMOVE
-(define-key pedro-mode-map (kbd "C-M-j")  'windmove-left)
-(define-key pedro-mode-map (kbd "C-M-l") 'windmove-right)
-(define-key pedro-mode-map (kbd "C-M-i")    'windmove-up)
-(define-key pedro-mode-map (kbd "C-M-k")  'windmove-down)
-
 ;; CUSTOM FUNCTIONS
-(define-key pedro-mode-map (kbd "<C-return>") 'open-line-above)
-(define-key pedro-mode-map (kbd "M-RET") 'open-line-below)
-(define-key pedro-mode-map (kbd "C-z y") 'duplicate-current-line-or-region)
-(define-key pedro-mode-map (kbd "C-z r") 'rename-this-buffer-and-file)
+(define-key pedro-mode-map (kbd "C-c y") 'duplicate-current-line-or-region)
+(define-key pedro-mode-map (kbd "C-c r") 'rename-this-buffer-and-file)
 (define-key pedro-mode-map (kbd "C-l") 'comment-or-uncomment-line-or-region)
 (define-key pedro-mode-map (kbd "M-n") 'delete-indentation)
 (define-key pedro-mode-map (kbd "M-s") 'search-selection)
@@ -116,11 +102,11 @@
 (define-key pedro-mode-map (kbd "C-o") 'er/expand-region)
 
 ;; ACE JUMP MODE
-(define-key pedro-mode-map (kbd "M-o") 'ace-jump-mode)
+(define-key pedro-mode-map (kbd "C-;") 'ace-jump-mode)
 
 ;; FOLD DWIM
 (require 'fold-dwim)
-(define-key pedro-mode-map (kbd "C-z f") 'fold-dwim-toggle-selective-display)
+(define-key pedro-mode-map (kbd "C-c f") 'fold-dwim-toggle-selective-display)
 
 ;; DIRED SETTINGS
 (require 'dired)
@@ -157,12 +143,12 @@
 (projectile-global-mode)
 
 ;; PROJECTILE and HELM
-(global-set-key (kbd "C-z h") 'helm-projectile)
-(global-set-key (kbd "C-z b") 'helm-buffers-list)
+(global-set-key (kbd "C-c h") 'helm-projectile)
+(global-set-key (kbd "C-c b") 'helm-buffers-list)
 
 ;; MAGIT status
-(define-key pedro-mode-map (kbd "C-z s")  'magit-status)
-(define-key pedro-mode-map (kbd "C-z l")  'magit-log)
+(define-key pedro-mode-map (kbd "C-c s")  'magit-status)
+(define-key pedro-mode-map (kbd "C-c l")  'magit-log)
 
 ;; full screen magit-status
 (defadvice magit-status (around magit-fullscreen activate)
@@ -180,19 +166,6 @@
 ;; ==================================================
 ;;              CUSTOM FUNCTIONS
 ;; ==================================================
-
-(defun open-line-below ()
-  (interactive)
-  (end-of-line)
-  (newline)
-  (indent-for-tab-command))
-
-(defun open-line-above ()
-  (interactive)
-  (beginning-of-line)
-  (newline)
-  (forward-line -1)
-  (indent-for-tab-command))
 
 (defun cut-line-or-region()
   "Kill current line if no region is active, otherwise kills region."
@@ -280,28 +253,3 @@ there's a region, all lines that region covers will be duplicated."
 ;; ==================================================
 ;;               APPEARENCE
 ;; ==================================================
-(powerline-default-theme)
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ansi-color-names-vector ["#212526"
-                            "#ff4b4b"
-                            "#b4fa70"
-                            "#fce94f"
-                            "#729fcf"
-                            "#ad7fa8"
-                            "#8cc4ff"
-                            "#eeeeec"])
- '(custom-enabled-themes (quote (sanityinc-tomorrow-eighties)))
- '(custom-safe-themes (quote
-                       ("628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" default)
-                       )))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )

@@ -24,6 +24,5 @@
 (depends-on "magit")
 (depends-on "fold-dwim")
 
-(depends-on "powerline")
-(depends-on "color-theme-sanityinc-tomorrow")
-
+(depends-on "textmate")
+(depends-on "highlight-indentation")
