@@ -84,6 +84,7 @@
 (define-key pedro-mode-map (kbd "M-n") 'delete-indentation)
 (define-key pedro-mode-map (kbd "M-s") 'search-selection)
 
+
 ;; ==================================================
 ;;             GLOBAL MAPPINGS
 ;; ==================================================
@@ -93,6 +94,7 @@
 (global-set-key [remap kill-ring-save] 'copy-line-or-region)
 (global-unset-key "\C-z")
 (global-unset-key "\C-x\C-z")
+(global-set-key [(ctrl tab)] 'other-window)
 
 ;; ==================================================
 ;;              PLUGINS and PACKAGES
@@ -254,8 +256,18 @@ there's a region, all lines that region covers will be duplicated."
 ;;               APPEARENCE
 ;; ==================================================
 
-(set-face-background 'show-paren-match "red")
+(custom-set-faces
+ '(show-paren-match ((t (:background "red"))))
+ '(mode-line-buffer-id ((t (:inherit bold))))
+ )
 
 (load-theme 'solarized-dark t)
 
 (powerline-default-theme)
+
+(set-face-attribute 'mode-line nil
+                    :background "DarkSlateGray"
+                    :box nil)
+(set-face-attribute 'mode-line-inactive nil
+                    :box nil)
+
