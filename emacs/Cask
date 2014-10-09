@@ -24,5 +24,4 @@
 (depends-on "magit")
 (depends-on "fold-dwim")
 
-(depends-on "powerline")
-(depends-on "solarized-theme")
+(depends-on "color-theme-solarized")

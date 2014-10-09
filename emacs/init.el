@@ -256,18 +256,7 @@ there's a region, all lines that region covers will be duplicated."
 ;;               APPEARENCE
 ;; ==================================================
 
-(custom-set-faces
- '(show-paren-match ((t (:background "red"))))
- '(mode-line-buffer-id ((t (:inherit bold))))
- )
-
 (load-theme 'solarized-dark t)
 
-(powerline-default-theme)
-
-(set-face-attribute 'mode-line nil
-                    :background "DarkSlateGray"
-                    :box nil)
-(set-face-attribute 'mode-line-inactive nil
-                    :box nil)
-
+(custom-set-faces
+ '(show-paren-match ((t (:background "red")))))
