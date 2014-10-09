@@ -84,7 +84,6 @@
 (define-key pedro-mode-map (kbd "M-n") 'delete-indentation)
 (define-key pedro-mode-map (kbd "M-s") 'search-selection)
 
-
 ;; ==================================================
 ;;             GLOBAL MAPPINGS
 ;; ==================================================
@@ -106,10 +105,6 @@
 ;; ACE JUMP MODE
 (define-key pedro-mode-map (kbd "C-;") 'ace-jump-mode)
 
-;; FOLD DWIM
-(require 'fold-dwim)
-(define-key pedro-mode-map (kbd "C-c f") 'fold-dwim-toggle-selective-display)
-
 ;; DIRED SETTINGS
 (require 'dired)
 (setq dired-recursive-deletes (quote top))
@@ -124,7 +119,6 @@
 (ido-everywhere 1)
 (flx-ido-mode 1)
 (setq ido-use-faces nil)
-(ido-vertical-mode 1)
 
 ;; SAVEPLACE
 (require 'saveplace)
@@ -144,10 +138,6 @@
 ;; PROJECTILE
 (projectile-global-mode)
 
-;; PROJECTILE and HELM
-(global-set-key (kbd "C-c h") 'helm-projectile)
-(global-set-key (kbd "C-c b") 'helm-buffers-list)
-
 ;; MAGIT status
 (define-key pedro-mode-map (kbd "C-c s")  'magit-status)
 (define-key pedro-mode-map (kbd "C-c l")  'magit-log)
@@ -161,9 +151,6 @@
 ;; MULTIPLE CURSORS
 (define-key pedro-mode-map (kbd "C-,") 'mc/mark-previous-like-this)
 (define-key pedro-mode-map (kbd "C-.") 'mc/mark-next-like-this)
-
-;; Ag - the silver searcher
-(setq ag-highlight-search 't)
 
 ;; ==================================================
 ;;              CUSTOM FUNCTIONS
