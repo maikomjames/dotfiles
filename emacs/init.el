@@ -6,7 +6,7 @@
 ;;                 Basic Settings
 ;; ==================================================
 
-(set-frame-font "Source Code Pro for Powerline-14")
+(set-face-attribute 'default nil :font "Monaco 18")
 (setq mac-command-modifier 'meta)
 (setq ring-bell-function 'ignore)
 (setq default-directory "~/")
@@ -14,7 +14,7 @@
 (global-auto-revert-mode 1)
 (global-visual-line-mode t)
 (delete-selection-mode t)
-(blink-cursor-mode t)
+(blink-cursor-mode -1)
 (show-paren-mode 1)
 
 (setq backup-directory-alist `(("." . "~/.saves")))
