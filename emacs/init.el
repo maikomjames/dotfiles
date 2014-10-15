@@ -10,6 +10,7 @@
 (setq mac-command-modifier 'meta)
 (setq ring-bell-function 'ignore)
 (setq default-directory "~/")
+(column-number-mode 1)
 
 (global-auto-revert-mode 1)
 (global-visual-line-mode t)
