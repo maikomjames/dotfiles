@@ -33,6 +33,7 @@
       scroll-preserve-screen-position 1)
 
 (when (window-system)
+  (custom-set-variables '(initial-frame-alist (quote ((fullscreen . maximized)))))
   (setq frame-title-format
         '((:eval (if (buffer-file-name)
                      (abbreviate-file-name (buffer-file-name))
