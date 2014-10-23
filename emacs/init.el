@@ -121,6 +121,7 @@
 (ido-everywhere 1)
 (flx-ido-mode 1)
 (setq ido-use-faces nil)
+(ido-vertical-mode 1)
 
 ;; SAVEPLACE
 (require 'saveplace)
@@ -153,6 +154,17 @@
 ;; MULTIPLE CURSORS
 (define-key pedro-mode-map (kbd "C-,") 'mc/mark-previous-like-this)
 (define-key pedro-mode-map (kbd "C-.") 'mc/mark-next-like-this)
+
+;; FOLD DWIM
+(require 'fold-dwim)
+(define-key pedro-mode-map (kbd "C-c f") 'fold-dwim-toggle-selective-display)
+
+;; PROJECTILE and HELM
+(global-set-key (kbd "C-c h") 'helm-projectile)
+(global-set-key (kbd "C-c b") 'helm-buffers-list)
+
+;; Ag - the silver searcher
+(setq ag-highlight-search 't)
 
 ;; ==================================================
 ;;              CUSTOM FUNCTIONS
@@ -245,7 +257,7 @@ there's a region, all lines that region covers will be duplicated."
 ;;               APPEARENCE
 ;; ==================================================
 
-(load-theme 'solarized-dark t)
+;; (load-theme 'solarized-dark t)
 
-(custom-set-faces
- '(show-paren-match ((t (:background "red")))))
+;; (custom-set-faces
+;;  '(show-paren-match ((t (:background "red")))))
